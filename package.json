@@ -1,0 +1,23 @@
+{
+  "name": "team-project-management",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/api",
+    "apps/web"
+  ],
+  "scripts": {
+    "dev": "concurrently -k \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm run start:dev --workspace @team-management/api",
+    "dev:web": "npm run dev --workspace @team-management/web",
+    "build": "npm run build --workspace @team-management/api && npm run build --workspace @team-management/web",
+    "test": "npm run test --workspace @team-management/api && npm run test --workspace @team-management/web",
+    "db:generate": "npm run db:generate --workspace @team-management/api",
+    "db:migrate": "npm run db:migrate --workspace @team-management/api",
+    "db:deploy": "npm run db:deploy --workspace @team-management/api",
+    "db:seed": "npm run db:seed --workspace @team-management/api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
